@@ -1,4 +1,4 @@
-S# Sistema de Atención al Cliente con CrewAI
+Sistema de Atención al Cliente con CrewAI
 
 Sistema desarrollado en Python que utiliza CrewAI para organizar agentes de inteligencia artificial especializados en la atención al cliente. El proyecto clasifica consultas y asigna una respuesta según el área correspondiente.
 
