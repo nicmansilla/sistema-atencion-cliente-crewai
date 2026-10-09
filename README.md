@@ -1,89 +1,109 @@
-Sistema de Atención al Cliente con CrewAI
-1. Descripción del proyecto
+S# Sistema de Atención al Cliente con CrewAI
 
-Este proyecto implementa un sistema de atención al cliente utilizando Python y CrewAI. Su objetivo es clasificar las consultas recibidas, asignarlas a un área especializada y generar una respuesta mediante un agente de inteligencia artificial.
+Sistema desarrollado en Python que utiliza CrewAI para organizar agentes de inteligencia artificial especializados en la atención al cliente. El proyecto clasifica consultas y asigna una respuesta según el área correspondiente.
 
-El sistema combina la organización de agentes de CrewAI con un mecanismo básico de asignación de especialistas según el tipo de consulta y su disponibilidad.
+## Objetivo
 
-2. Objetivos
-Clasificar las consultas de los clientes.
-Asignar cada consulta al área correspondiente.
-Utilizar agentes especializados para generar respuestas.
-Incorporar un mecanismo sencillo de control de carga de trabajo.
-Practicar la implementación de sistemas multiagente con Python.
-3. Agentes especializados
-Agente	Área	Función
-Ana	Ventas	Consultas sobre productos, precios, promociones y cotizaciones.
-Luis	Soporte técnico	Consultas sobre errores, acceso, conexión e instalación.
-María	Atención general	Consultas generales y orientación al cliente.
-4. Tecnologías utilizadas
-Python
-CrewAI
-LiteLLM
-Groq API
-python-dotenv
-Git y GitHub
-5. Requisitos
-Python instalado.
-Una clave de API de Groq.
-Conexión a Internet para utilizar el modelo de inteligencia artificial.
-6. Instalación
+Desarrollar un sistema de atención al cliente que permita organizar las consultas, utilizar agentes especializados y generar respuestas mediante un modelo de lenguaje.
 
-Clonar el repositorio y acceder a su carpeta:
+## Características
 
+* Clasificación de consultas por área.
+* Agentes especializados en ventas, soporte técnico y atención general.
+* Asignación de consultas según el tipo de solicitud.
+* Uso de CrewAI para coordinar las tareas de los agentes.
+* Ejecución interactiva desde la terminal.
+
+## Agentes del sistema
+
+| Agente | Área             | Función                                                        |
+| ------ | ---------------- | -------------------------------------------------------------- |
+| Ana    | Ventas           | Consultas sobre productos, precios, descuentos y cotizaciones. |
+| Luis   | Soporte técnico  | Consultas sobre acceso, conexión, instalación y errores.       |
+| María  | Atención general | Consultas generales e información para clientes.               |
+
+## Tecnologías utilizadas
+
+* **Python 3.13:** lenguaje de programación.
+* **CrewAI:** creación y coordinación de agentes.
+* **Groq API:** acceso al modelo de lenguaje.
+* **LiteLLM:** integración con el proveedor del modelo.
+* **python-dotenv:** lectura de variables de entorno.
+* **uv:** gestión del entorno y las dependencias.
+* **Git y GitHub:** control de versiones y publicación del código.
+
+## Requisitos
+
+* Python 3.13.
+* uv instalado.
+* Una clave de API válida de Groq.
+* Conexión a Internet.
+
+## Instalación y ejecución
+
+### 1. Clonar el repositorio
+
+```bash
 git clone URL_DE_TU_REPOSITORIO
 cd sistema-atencion-cliente-crewai
+```
 
-Crear un entorno virtual:
+Reemplaza `URL_DE_TU_REPOSITORIO` por la dirección real del repositorio.
 
-python -m venv .venv
+### 2. Configurar las variables de entorno
 
-Activar el entorno virtual en Windows:
+Crea un archivo `.env` en la carpeta principal del proyecto con este contenido:
 
-.\.venv\Scripts\Activate.ps1
-
-Instalar las dependencias:
-
-pip install -r requirements.txt
-7. Configuración
-
-Crear un archivo llamado .env en la carpeta principal del proyecto.
-
-Agregar las siguientes variables:
-
+```dotenv
 GROQ_API_KEY=TU_CLAVE_DE_GROQ
 GROQ_MODEL=openai/gpt-oss-120b
+```
 
-Reemplazar TU_CLAVE_DE_GROQ por una clave válida.
+Reemplaza `TU_CLAVE_DE_GROQ` por tu clave personal. No compartas ni publiques este archivo.
 
-Importante: no subir el archivo .env a GitHub ni compartir la clave de API. El archivo .env.example sirve como plantilla sin credenciales reales.
+### 3. Instalar las dependencias
 
-8. Ejecución
+```bash
+uv sync
+```
 
-Desde la carpeta del proyecto, ejecutar:
+Este comando instala las dependencias definidas en `pyproject.toml` y utiliza `uv.lock` cuando está disponible.
 
-python sistema_atencion_cliente_crewai.py
+### 4. Ejecutar el sistema
 
-El programa permite ingresar consultas por consola y finaliza cuando el usuario escribe salir.
+```bash
+uv run sistema_atencion_cliente_crewai.py
+```
 
-9. Ejemplos de consultas
+## Ejemplos de consultas
+
+```text
 ¿Cuánto cuesta el producto?
-No puedo iniciar sesión en mi cuenta.
-¿Cuál es el horario de atención?
+No puedo iniciar sesión.
 ¿Qué descuentos tienen disponibles?
-10. Funcionamiento general
-El cliente ingresa una consulta.
-El sistema clasifica la consulta por palabras clave.
-Se selecciona el especialista correspondiente.
-CrewAI ejecuta la tarea mediante el agente especializado.
-El sistema muestra la respuesta generada.
-Se actualiza la disponibilidad del especialista.
-11. Seguridad y limitaciones
+¿Cuál es el horario de atención?
+```
 
-La clave de API debe mantenerse fuera del repositorio. El archivo .gitignore excluye las credenciales y los archivos temporales.
+Para finalizar la ejecución, escribe `salir` si el programa está esperando una consulta.
 
-La clasificación actual utiliza palabras clave, por lo que algunas consultas ambiguas pueden ser derivadas a un área que no corresponda. Las respuestas generadas también dependen del modelo de inteligencia artificial y de la información disponible.
+## Funcionamiento general
 
-12. Autoría
+1. El cliente ingresa una consulta.
+2. El sistema clasifica la consulta mediante palabras clave.
+3. Se identifica el área correspondiente.
+4. CrewAI ejecuta la tarea con el agente especializado.
+5. El modelo genera una respuesta que se muestra al cliente.
 
-Proyecto académico desarrollado para practicar Python, inteligencia artificial y orquestación de agentes con CrewAI.
+## Seguridad
+
+* El archivo `.env` no debe publicarse.
+* Las carpetas de entornos virtuales deben excluirse del repositorio.
+* No se deben incluir claves de API en el código fuente ni en el historial de Git.
+
+## Limitaciones
+
+La clasificación depende de las palabras clave definidas en el programa. Las respuestas dependen del modelo de lenguaje y pueden requerir validación. El sistema es una implementación académica y no sustituye por sí solo una plataforma empresarial completa de atención al cliente.
+
+## Autoría
+
+Proyecto académico de práctica en Python, inteligencia artificial y sistemas multiagente con CrewAI.
